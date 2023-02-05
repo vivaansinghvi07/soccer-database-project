@@ -70,3 +70,9 @@ PostGreSQL 15
   - year_created	
   - times_given
   - award_desc
+
+# Use Cases:
+- Finding out how many teams scored over 5 goals in the Premier League season 2019-2020
+- Finding out the highest paid player
+- Counting the number of teams which have won in their league
+- Finding the team with the highest-performing player by awards, goals, assists, etc
