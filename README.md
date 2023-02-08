@@ -1,5 +1,16 @@
 # soccer-database-project
-This will database will store information all about soccer, such as leagues, teams, players, matches played, and much more.
+This will database will store information all about soccer, such as leagues, teams, players, matches played, and much more. With this project, I aim to provide easily accessible information all about soccer. People will be able to analyze anything from details about matches from 20 years ago, to the salaries of the top 5 most well-paid players in the scene. 
+
+The tables used in this project include those describing a(n):
+  - League
+  - League History - a recount of a particular season
+  - Team
+  - Team Standing - how a team performed in a season
+  - Team Stat - the team's statistics in a season
+  - Match
+  - Player
+  - Player Stat - a players in-game stats
+  - Award
 
 ## Requirements: 
 PostGreSQL 15
