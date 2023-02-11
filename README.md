@@ -41,7 +41,7 @@ PostGreSQL 15
   - season_year	
   - league_mvp_id - relates to player_id in PLAYER table
 
-**League** - this table keeps information of each league that I am looking at - such as when the Premier League was founded, how often it occurs, etc.
+**League** - this table keeps information of each league that I am looking at - such as when the Premier League was founded, how often it occurs, etc. Note: Recurrence represents the number of years between seasons of the league
   - year_founded  
   - league_name 
   - league_id  
@@ -51,6 +51,7 @@ PostGreSQL 15
 **Match** - this table is the largest and keeps information on every match for every league that I am looking at - you will be able to find the data of every soccer game that happened - currently, the table is about 5000-7000 rows long, just with the premier league alone.
   - match_id
   - date_played
+  - season_id - relates to season_id in LEAGUEHISTORY table
   - league_id - relates to league_id in LEAGUE table
   - home_team_id - relates to team_id in TEAM table
   - away_team_id - relates to team_id in TEAM table
@@ -92,7 +93,60 @@ PostGreSQL 15
   - award_desc
 
 ## Use Cases:
-- Finding out how many teams scored over 5 goals in the Premier League season 2019-2020
-- Finding out the highest paid player
-- Counting the number of teams which have won in their league
-- Finding the team with the highest-performing player by awards, goals, assists, etc
+- **League**:  
+  - Finding the league/competition that happens the least frequently
+    - `SELECT league_name, MAX(recurrence) AS years_per_season FROM League`
+    - `SELECT league_name FROM League WHERE recurrence IN (SELECT MAX(recurrence) FROM League)`
+  - Finding the oldest league
+    - `SELECT league_name, MIN(year_founded) AS oldest_year FROM League`
+    - `SELECT league_name FROM League WHERE year_founded IN (SELECT MIN(year_founded) FROM League)`
+  - Finding the number of teams playing in the world cup
+    - `SELECT league_name, num_teams FROM League WHERE league_name LIKE '%world%'`
+- **Team**
+  - Sorting teams by win count
+    - `SELECT team_name, wins FROM Team ORDER BY wins DESC`
+  - Finding all the teams that are based in England
+    - `SELECT team_name FROM Team WHERE country LIKE '%england%'`
+  - Getting the league (if any) of the oldest team in the database
+    - `SELECT t.team_name, t.year_founded, l.league_name FROM Team t LEFT JOIN League l ON t.league_id = l.league_id WHERE t.year_founded IN (SELECT MAX(year_founded) FROM Team)`
+- **Award**
+  - Selecting the rarest award
+    - `SELECT award_name, MIN(times_given) AS fewest_times_given FROM Award`
+  - Finding the description of the ballon d'or
+    - `SELECT award_desc FROM Award WHERE award_name LIKE '%ballon d'or%'`
+  - Finding the most recently created award
+    - `SELECT award_name, award_desc, MIN(year_created) AS year_created FROM Award`
+- **Player** and **PlayerStat**
+  - Arranging players by salary
+    - `SELECT player_name, year_salary FROM Player ORDER BY year_salary DESC`
+  - Finding the most decorated player
+    - `SELECT TOP 1 player_name FROM Player ORDER BY len(award_ids) DESC`
+  - Finding the stats of a player (ex: Messi)
+    - `SELECT p.player_name, ps.* FROM Player p INNER JOIN PlayerStat ps ON p.stat_id = ps.stat_id WHERE p.player_name LIKE '%messi%'`
+  - Finding the player with the highest goals scored
+    - `SELECT p.player_name, MAX(ps.goals) AS goals_scored FROM Player p INNER JOIN PlayerStat ps ON p.stat_id = ps.stat_id`
+  - Finding the highest number of games played
+    - `SELECT MAX(games_played) AS highest_games_played FROM Player Stat`
+  - Finding the players with less than 100 matches
+    - `SELECT p.player_name, ps.games_played FROM Player p INNER JOIN PlayerStat ps ON p.stat_id = ps.stat_id WHERE ps.games_played < 100`
+- **Match**
+  - Finding the number of matches that have had more than 8 goals
+    - `SELECT COUNT(*) AS count FROM Match WHERE goals_home > 8 OR goals_away > 8`
+  - Finding the matches that happened between specific dates (01-01-2001 and 02-01-2001)
+    - `SELECT * FROM Match WHERE date_played BETWEEN '2001-01-01' AND '2001-02-01'`
+  - Finding the highest scoring home teams that played in the 2018 season of the premier league
+    - `SELECT TOP 5 * FROM Match WHERE season_id IN (SELECT season_id FROM LeagueHistory WHERE league_id = 'PRM' AND season_year = 2018) ORDER BY goals_home DESC`
+- **TeamStat** and **TeamStanding**
+  - Finding the team with the best goal difference in their 2020 season
+    - `SELECT t.team_name, MAX(tst.goal_difference) as best_goal_difference FROM Team t INNER JOIN TeamStanding ts ON t.team_id = ts.team_id INNER JOIN TeamStat tst ON ts.stat_id = tst.stat_id WHERE ts.season_year = 2020`
+  - Finding the highest goals scored by any team
+    - `SELECT MAX(goals_scored) AS highest_goals_scored FROM TeamStat`
+  - Finding a team's (Manchester City) stats in a certain season
+    - `SELECT tst.* FROM TeamStanding ts INNER JOIN TeamStat tst ON ts.stat_id = tst.stat_id WHERE ts.team_id IN (SELECT team_id FROM Team WHERE team_name LIKE '%manchester city%')`
+  - Finding the seasons which a team (Barcelona) played in 
+    - `SELECT season_year FROM TeamStanding ts INNER JOIN Team t ON t.team_id = ts.team_id WHERE t.team_name LIKE '%barcelona%'`
+- **LeagueHistory**
+  - Finding the mvp in a certain season of a certain league (premier league)
+    - `SELECT player_name FROM Player WHERE player_id IN (SELECT league_mvp_id FROM LeagueHistory WHERE season_year = 2017 AND league_id = 'PRM')`
+  - Finding the teams that have win in a certain league (world cup)
+    - `SELECT t.team_name FROM Team t INNER JOIN LeagueHistory lh ON t.team_id = lh.winning_id WHERE lh.league_id = 'WRLD'`
