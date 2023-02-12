@@ -65,7 +65,7 @@ PostGreSQL 15
   - middle_initial 
   - player_id 
   - year_salary 
-  - position
+  - field_position
   - team_id - relates to team_id in TEAM table
   - stat_id - relates to stat_id in PLAYERSTAT table
   - award_ids - relates to award_id in AWARD table
