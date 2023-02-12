@@ -60,7 +60,9 @@ PostGreSQL 15
   - winning_id - relates to team_id in TEAM table
 
 **Player** - this table keeps track of all the players in soccer and their various details - such as what Messi’s earnings are, what his awards are, what team(s) he plays for, and how many goals and assists he has made
-  - player_name 
+  - first_name
+  - last_name
+  - middle_initial 
   - player_id 
   - year_salary 
   - position
@@ -118,17 +120,17 @@ PostGreSQL 15
     - `SELECT award_name, award_desc, MIN(year_created) AS year_created FROM Award`
 - **Player** and **PlayerStat**
   - Arranging players by salary
-    - `SELECT player_name, year_salary FROM Player ORDER BY year_salary DESC`
+    - `SELECT first_name, last_name, year_salary FROM Player ORDER BY year_salary DESC`
   - Finding the most decorated player
-    - `SELECT TOP 1 player_name FROM Player ORDER BY len(award_ids) DESC`
+    - `SELECT TOP 1 first_name, last_name FROM Player ORDER BY len(award_ids) DESC`
   - Finding the stats of a player (ex: Messi)
-    - `SELECT p.player_name, ps.* FROM Player p INNER JOIN PlayerStat ps ON p.stat_id = ps.stat_id WHERE p.player_name LIKE '%messi%'`
+    - `SELECT p.first_name, p.last_name, ps.* FROM Player p INNER JOIN PlayerStat ps ON p.stat_id = ps.stat_id WHERE p.last_name LIKE '%messi%'`
   - Finding the player with the highest goals scored
-    - `SELECT p.player_name, MAX(ps.goals) AS goals_scored FROM Player p INNER JOIN PlayerStat ps ON p.stat_id = ps.stat_id`
+    - `SELECT p.first_name, p.last_name, MAX(ps.goals) AS goals_scored FROM Player p INNER JOIN PlayerStat ps ON p.stat_id = ps.stat_id`
   - Finding the highest number of games played
     - `SELECT MAX(games_played) AS highest_games_played FROM Player Stat`
   - Finding the players with less than 100 matches
-    - `SELECT p.player_name, ps.games_played FROM Player p INNER JOIN PlayerStat ps ON p.stat_id = ps.stat_id WHERE ps.games_played < 100`
+    - `SELECT p.first_name, p.last_name, ps.games_played FROM Player p INNER JOIN PlayerStat ps ON p.stat_id = ps.stat_id WHERE ps.games_played < 100`
 - **Match**
   - Finding the number of matches that have had more than 8 goals
     - `SELECT COUNT(*) AS count FROM Match WHERE goals_home > 8 OR goals_away > 8`
@@ -147,6 +149,6 @@ PostGreSQL 15
     - `SELECT season_year FROM TeamStanding ts INNER JOIN Team t ON t.team_id = ts.team_id WHERE t.team_name LIKE '%barcelona%'`
 - **LeagueHistory**
   - Finding the mvp in a certain season of a certain league (premier league)
-    - `SELECT player_name FROM Player WHERE player_id IN (SELECT league_mvp_id FROM LeagueHistory WHERE season_year = 2017 AND league_id = 'PRM')`
+    - `SELECT first_name FROM Player WHERE player_id IN (SELECT league_mvp_id FROM LeagueHistory WHERE season_year = 2017 AND league_id = 'PRM')`
   - Finding the teams that have win in a certain league (world cup)
     - `SELECT t.team_name FROM Team t INNER JOIN LeagueHistory lh ON t.team_id = lh.winning_id WHERE lh.league_id = 'WRLD'`
