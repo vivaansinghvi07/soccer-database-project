@@ -13,7 +13,10 @@ The tables used in this project include those describing a(n):
   - Award
 
 ## Requirements: 
-PostGreSQL 15
+- PostGreSQL 15
+- PGAdmin4
+- Lucid Chart (For ERD)
+- MacOS for implementation
 
 ## Tables: 
 **Team Standing** - this table helps keep track of how a team performed in a certain season - such as Arsenal’s performance in the Premier League in the 2018-19 season
