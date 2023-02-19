@@ -52,7 +52,7 @@ The tables used in this project include those describing a(n):
   - num_teams   
   - recurrence 
 
-**Match** - this table is the largest and keeps information on every match for every league that I am looking at - you will be able to find the data of every soccer game that happened - currently, the table is about 5000-7000 rows long, just with the premier league alone.
+**Match** - this table is the largest and keeps information on every match for every league that I am looking at - you will be able to find the data of every soccer game that happened
   - match_id
   - date_played
   - league_id - relates to league_id in LEAGUE table
