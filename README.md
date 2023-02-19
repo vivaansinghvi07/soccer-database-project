@@ -71,7 +71,6 @@ The tables used in this project include those describing a(n):
   - field_position
   - team_id - relates to team_id in TEAM table
   - stat_id - relates to stat_id in PLAYERSTAT table
-  - award_ids - relates to award_id in AWARD table
 
 **Player Stat** - this table keeps track of the player's in-game statistics, similar to how the TEAMSTAT table relates to TEAMSTANDING
   - stat_id
@@ -80,6 +79,11 @@ The tables used in this project include those describing a(n):
   - goals  
   - assists
   - hat_tricks
+
+**Player Award** - this table stores each award that was won by a player and also lists the player next to that award
+  - award_id - relates to award_id in AWARD table
+  - award_name
+  - player_id - relates to player_id in PLAYER table
 
 **Teams** - this table keeps track of teams and information about them - such as when Manchester United was founded, and what league it plays in
   - team_id 
@@ -92,7 +96,6 @@ The tables used in this project include those describing a(n):
 
 **Award** - stores information about various awards in soccer - such as when the Ballon-D’or was started, a description of it, and how many times it was given
   - award_id
-  - award_name
   - year_created	
   - times_given
   - award_desc
