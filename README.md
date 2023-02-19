@@ -39,11 +39,11 @@ The tables used in this project include those describing a(n):
 **League History** - this table keeps track of who won each season in the league. Such as: who won the Premier league in the 2017-18 season
   - season_id	
   - league_id - relates to league_id in LEAGUE table
-  - winning_id - relates to team_id in TEAM table
+  - team_winning_id - relates to team_id in TEAM table
   - season_year	
   - revenue
   - viewership
-  - league_mvp_id - relates to player_id in PLAYER table
+  - player_mvp_id - relates to player_id in PLAYER table
 
 **League** - this table keeps information of each league that I am looking at - such as when the Premier League was founded, how often it occurs, etc. Note: Recurrence represents the number of years between seasons of the league
   - year_founded  
@@ -130,16 +130,16 @@ The tables used in this project include those describing a(n):
   - Finding the most decorated player
     - `SELECT TOP 1 first_name, last_name FROM Player ORDER BY len(award_ids) DESC`
   - Finding the stats of a player (ex: Messi)
-    - `SELECT p.first_name, p.last_name, ps.* FROM Player p INNER JOIN PlayerStat ps ON p.stat_id = ps.stat_id WHERE p.last_name LIKE '%messi%'`
+    - `SELECT p.first_name, p.last_name, ps.* FROM Player p INNER JOIN PlayerStat ps ON p.player_id = ps.player_id WHERE p.last_name LIKE '%messi%'`
   - Finding the player with the highest goals scored
-    - `SELECT p.first_name, p.last_name, MAX(ps.goals) AS goals_scored FROM Player p INNER JOIN PlayerStat ps ON p.stat_id = ps.stat_id`
+    - `SELECT p.first_name, p.last_name, MAX(ps.goals) AS goals_scored FROM Player p INNER JOIN PlayerStat ps ON p.player_id = ps.player_id`
   - Finding the highest number of games played
     - `SELECT MAX(games_played) AS highest_games_played FROM Player Stat`
   - Finding the players with less than 100 matches
-    - `SELECT p.first_name, p.last_name, ps.games_played FROM Player p INNER JOIN PlayerStat ps ON p.stat_id = ps.stat_id WHERE ps.games_played < 100`
+    - `SELECT p.first_name, p.last_name, ps.games_played FROM Player p INNER JOIN PlayerStat ps ON p.player_id = ps.player_id WHERE ps.games_played < 100`
 - **Match**
   - Finding the number of matches that have had more than 8 goals
-    - `SELECT COUNT(*) AS count FROM Match WHERE goals_home > 8 OR goals_away > 8`
+    - `SELECT COUNT(*) AS count FROM Match WHERE goals_team1 > 8 OR goals_team2 > 8`
   - Finding the matches that happened between specific dates (01-01-2001 and 02-01-2001)
     - `SELECT * FROM Match WHERE date_played BETWEEN '2001-01-01' AND '2001-02-01'`
   - Finding the highest scoring home teams that played in the 2018 season of the premier league
@@ -150,11 +150,11 @@ The tables used in this project include those describing a(n):
   - Finding the highest goals scored by any team
     - `SELECT MAX(goals_scored) AS highest_goals_scored FROM TeamStat`
   - Finding a team's (Manchester City) stats in a certain season
-    - `SELECT tst.* FROM TeamStanding ts INNER JOIN TeamStat tst ON ts.stat_id = tst.stat_id WHERE ts.team_id IN (SELECT team_id FROM Team WHERE team_name LIKE '%manchester city%')`
+    - `SELECT tst.* FROM TeamStanding ts INNER JOIN TeamStat tst ON ts.standing_id = tst.standing_id WHERE ts.team_id IN (SELECT team_id FROM Team WHERE team_name LIKE '%manchester city%')`
   - Finding the seasons which a team (Barcelona) played in 
     - `SELECT season_year FROM TeamStanding ts INNER JOIN Team t ON t.team_id = ts.team_id WHERE t.team_name LIKE '%barcelona%'`
 - **LeagueHistory**
   - Finding the mvp in a certain season of a certain league (premier league)
     - `SELECT first_name FROM Player WHERE player_id IN (SELECT league_mvp_id FROM LeagueHistory WHERE season_year = 2017 AND league_id = 'PRM')`
   - Finding the teams that have win in a certain league (world cup)
-    - `SELECT t.team_name FROM Team t INNER JOIN LeagueHistory lh ON t.team_id = lh.winning_id WHERE lh.league_id = 'WRLD'`
+    - `SELECT t.team_name FROM Team t INNER JOIN LeagueHistory lh ON t.team_id = lh.team_winning_id WHERE lh.league_id = 'WRLD'`
