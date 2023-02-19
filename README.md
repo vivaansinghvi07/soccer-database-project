@@ -23,12 +23,11 @@ The tables used in this project include those describing a(n):
   - standing_id
   - team_id  - relates to team_id in TEAM table
   - league_id - relates to league_id in LEAGUE table
-  - season_year	
   - season_id - relates to season_id in LEAGUEHISTORY table
-  - stat_id - relates to stat_id in TEAMSTAT table 
 
 **Team Stat** - this table keeps track of the team's performance during a season, as a somewhat branch of the TEAMSTANDING table
   - stat_id
+  - standing_id - relates to standing_id in TEAM STANDING table
   - games_played
   - wins
   - draws
@@ -42,6 +41,8 @@ The tables used in this project include those describing a(n):
   - league_id - relates to league_id in LEAGUE table
   - winning_id - relates to team_id in TEAM table
   - season_year	
+  - revenue
+  - viewership
   - league_mvp_id - relates to player_id in PLAYER table
 
 **League** - this table keeps information of each league that I am looking at - such as when the Premier League was founded, how often it occurs, etc. Note: Recurrence represents the number of years between seasons of the league
@@ -54,13 +55,12 @@ The tables used in this project include those describing a(n):
 **Match** - this table is the largest and keeps information on every match for every league that I am looking at - you will be able to find the data of every soccer game that happened - currently, the table is about 5000-7000 rows long, just with the premier league alone.
   - match_id
   - date_played
-  - season_id - relates to season_id in LEAGUEHISTORY table
   - league_id - relates to league_id in LEAGUE table
-  - home_team_id - relates to team_id in TEAM table
-  - away_team_id - relates to team_id in TEAM table
-  - goals_home   
-  - goals_away
-  - winning_id - relates to team_id in TEAM table
+  - team2_id - relates to team_id in TEAM table
+  - team1_id - relates to team_id in TEAM table
+  - goals_team1   
+  - goals_team2
+  - outcome
 
 **Player** - this table keeps track of all the players in soccer and their various details - such as what Messi’s earnings are, what his awards are, what team(s) he plays for, and how many goals and assists he has made
   - first_name
@@ -70,7 +70,6 @@ The tables used in this project include those describing a(n):
   - year_salary 
   - field_position
   - team_id - relates to team_id in TEAM table
-  - stat_id - relates to stat_id in PLAYERSTAT table
 
 **Player Stat** - this table keeps track of the player's in-game statistics, similar to how the TEAMSTAT table relates to TEAMSTANDING
   - stat_id
@@ -81,8 +80,8 @@ The tables used in this project include those describing a(n):
   - hat_tricks
 
 **Player Award** - this table stores each award that was won by a player and also lists the player next to that award
+  - player_award_id
   - award_id - relates to award_id in AWARD table
-  - award_name
   - player_id - relates to player_id in PLAYER table
 
 **Teams** - this table keeps track of teams and information about them - such as when Manchester United was founded, and what league it plays in
@@ -96,6 +95,7 @@ The tables used in this project include those describing a(n):
 
 **Award** - stores information about various awards in soccer - such as when the Ballon-D’or was started, a description of it, and how many times it was given
   - award_id
+  - award_name
   - year_created	
   - times_given
   - award_desc
