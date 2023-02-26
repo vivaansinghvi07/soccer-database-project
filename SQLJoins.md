@@ -7,7 +7,7 @@
 
 ## Images
 The following images describes the four join types.
-![Inner Join](/images/Inner%20Join.jpg "Inner Join")
-![Left Join](/images/Inner%20Join%20(1).jpg "Left Join")
-![Right Join](/images/Inner%20Join%20(2).jpg "Right Join")
-![Outer Join](/images/Inner%20Join%20(3).jpg "Outer Join")
+![Inner Join](/images/InnerJoin.jpg "Inner Join")
+![Left Join](/images/LeftJoin.jpg "Left Join")
+![Right Join](/images/RightJoin.jpg "Right Join")
+![Outer Join](/images/OuterJoin.jpg "Outer Join")
