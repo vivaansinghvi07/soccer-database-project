@@ -107,6 +107,7 @@ CREATE TABLE PlayerStat
 CREATE TABLE PlayerAward
 (
     playeraward_id  int     NOT NULL UNIQUE ,
+    date_awarded    date    NULL ,
     player_id       int     NOT NULL ,
     award_id        int     NOT NULL ,
 );
