@@ -11,7 +11,7 @@
 CREATE TABLE TeamStanding
 (
   standing_id	    int	        NOT NULL UNIQUE ,
-  team_id    	    int  	    NOT NULL ,
+  team_id    	    int         NOT NULL ,
   league_id  	    char(5)     NOT NULL ,
   season_id         int	        NULL
 );
