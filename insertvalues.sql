@@ -6,7 +6,7 @@ INSERT INTO Team(team_id, team_name, year_founded, league_id, games_played, wins
     VALUES ('', '', '', '', '', '', '')
 INSERT INTO Player(first_name, last_name, middle_initial, player_id, year_salary, field_position, team_id)
     VALUES ('', '', '', '', '', '', '')
-INSERT INTO Award(award_d, award_name, year_created, times_given, award_desc)
+INSERT INTO Award(award_id, award_name, year_created, times_given, award_desc)
     VALUES ('', '', '', '', '')
 INSERT INTO PlayerStat(stat_id, player_id, games_played, goals, assists, hat_tricks)
     VALUES('', '', '', '', '', '')
