@@ -102,6 +102,10 @@ The tables used in this project include those describing a(n):
   - times_given
   - award_desc
 
+## To Create The Database:
+- Open PGAdmin4 and create a database
+- Run the [create.sql](/scripts/create.sql) query to create the tables
+
 ## Use Cases:
 - **League**:  
   - Finding the league/competition that happens the least frequently
