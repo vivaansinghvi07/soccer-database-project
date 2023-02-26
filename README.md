@@ -44,7 +44,7 @@ The tables used in this project include those describing a(n):
   - season_year	
   - revenue
   - viewership
-  - player_mvp_id - relates to player_id in PLAYER table
+  - mvp_id - relates to player_id in PLAYER table
 
 **League** - this table keeps information of each league that I am looking at - such as when the Premier League was founded, how often it occurs, etc. Note: Recurrence represents the number of years between seasons of the league
   - year_founded  
