@@ -17,7 +17,7 @@ CREATE TABLE TeamStanding
 );
 
 --------------------------
--- Create TeamStat table
+-- Create TeamStandingStat table
 --------------------------
 CREATE TABLE TeamStandingStat
 (
@@ -147,7 +147,7 @@ ALTER TABLE TeamStanding ADD PRIMARY KEY (standing_id);
 ALTER TABLE Award ADD PRIMARY KEY (award_id);
 ALTER TABLE Team ADD PRIMARY KEY (team_id);
 ALTER TABLE Match ADD PRIMARY KEY (match_id);
-ALTER TABLE TeamStat ADD PRIMARY KEY (stat_id);
+ALTER TABLE TeamStandingStat ADD PRIMARY KEY (stat_id);
 ALTER TABLE PlayerStat ADD PRIMARY KEY (stat_id);
 
 ----------------------
@@ -159,12 +159,12 @@ ALTER TABLE LeagueHistory ADD CONSTRAINT FK_LeagueHistory_Player FOREIGN KEY (le
 ALTER TABLE TeamStanding ADD CONSTRAINT FK_TeamStanding_LeagueHistory FOREIGN KEY (season_id) REFERENCES LeagueHistory (season_id);
 ALTER TABLE TeamStanding ADD CONSTRAINT FK_TeamStanding_Team FOREIGN KEY (team_id) REFERENCES Team (team_id);
 ALTER TABLE TeamStanding ADD CONSTRAINT FK_TeamStanding_League FOREIGN KEY (league_id) REFERENCES League (league_id);
-ALTER TABLE TeamStanding ADD CONSTRAINT FK_TeamStanding_TeamStat FOREIGN KEY (stat_id) REFERENCES TeamStat (stat_id);
+ALTER TABLE TeamStanding ADD CONSTRAINT FK_TeamStanding_TeamStandingStat FOREIGN KEY (stat_id) REFERENCES TeamStandingStat (stat_id);
 ALTER TABLE Player ADD CONSTRAINT FK_Player_Award FOREIGN KEY (award_ids) REFERENCES Award (award_id);
 ALTER TABLE Player ADD CONSTRAINT FK_Player_PlayerStat FOREIGN KEY (stat_id) REFERENCES PlayerStat (stat_id);
 ALTER TABLE Team ADD CONSTRAINT FK_Team_League FOREIGN KEY (league_id) REFERENCES League (league_id);
 ALTER TABLE Player ADD CONSTRAINT FK_Player_Team FOREIGN KEY (team_id) REFERENCES Team (team_id);
-ALTER TABLE Match ADD CONSTRAINT FK_Matches_HomeTeam FOREIGN KEY (home_team_id) REFERENCES Team (team_id);
-ALTER TABLE Match ADD CONSTRAINT FK_Match_AwayTeam FOREIGN KEY (away_team_id) REFERENCES Team (team_id);
+ALTER TABLE Match ADD CONSTRAINT FK_Matches_Team1 FOREIGN KEY (team1_id) REFERENCES Team (team_id);
+ALTER TABLE Match ADD CONSTRAINT FK_Match_Team2 FOREIGN KEY (team2_id) REFERENCES Team (team_id);
 ALTER TABLE Match ADD CONSTRAINT FK_Match_WinningTeam FOREIGN KEY (winning_id) REFERENCES Team (team_id);
 ALTER TABLE Match ADD CONSTRAINT FK_Match_League FOREIGN KEY (league_id) REFERENCES League (league_id);
