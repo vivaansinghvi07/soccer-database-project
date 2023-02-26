@@ -13,7 +13,7 @@ CREATE TABLE TeamStanding
   standing_id	int	    NOT NULL UNIQUE ,
   team_id    	int  	NOT NULL ,
   league_id  	char(5) NOT NULL ,
-  season_id	    int	    NULL ,
+  season_id	    int	    NULL
 );
 
 --------------------------
@@ -109,7 +109,7 @@ CREATE TABLE PlayerAward
     playeraward_id  int     NOT NULL UNIQUE ,
     date_awarded    date    NULL ,
     player_id       int     NOT NULL ,
-    award_id        int     NOT NULL ,
+    award_id        int     NOT NULL
 );
 -----------------------
 -- Create Team table
@@ -155,7 +155,7 @@ ALTER TABLE PlayerAward ADD PRIMARY KEY (playeraward_id);
 -- Define foreign keys
 ----------------------
 ALTER TABLE LeagueHistory ADD CONSTRAINT FK_LeagueHistory_League FOREIGN KEY (league_id) REFERENCES League (league_id);
-ALTER TABLE LeagueHistory ADD CONSTRAINT FK_LeagueHistory_Team FOREIGN KEY (winning_id) REFERENCES Team (team_id);
+ALTER TABLE LeagueHistory ADD CONSTRAINT FK_LeagueHistory_WinningTeam FOREIGN KEY (winning_team_id) REFERENCES Team (team_id);
 ALTER TABLE LeagueHistory ADD CONSTRAINT FK_LeagueHistory_Player FOREIGN KEY (mvp_id) REFERENCES Player (player_id);
 ALTER TABLE TeamStanding ADD CONSTRAINT FK_TeamStanding_LeagueHistory FOREIGN KEY (season_id) REFERENCES LeagueHistory (season_id);
 ALTER TABLE TeamStanding ADD CONSTRAINT FK_TeamStanding_Team FOREIGN KEY (team_id) REFERENCES Team (team_id);
