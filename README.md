@@ -25,7 +25,7 @@ The tables used in this project include those describing a(n):
   - league_id - relates to league_id in LEAGUE table
   - season_id - relates to season_id in LEAGUEHISTORY table
 
-**Team Stat** - this table keeps track of the team's performance during a season, as a somewhat branch of the TEAMSTANDING table
+**Team Standing Stat** - this table keeps track of the team's performance during a season, as a somewhat branch of the TEAMSTANDINGSTAT table
   - stat_id
   - standing_id - relates to standing_id in TEAM STANDING table
   - games_played
@@ -71,7 +71,7 @@ The tables used in this project include those describing a(n):
   - field_position
   - team_id - relates to team_id in TEAM table
 
-**Player Stat** - this table keeps track of the player's in-game statistics, similar to how the TEAMSTAT table relates to TEAMSTANDING
+**Player Stat** - this table keeps track of the player's in-game statistics, similar to how the TEAMSTAT table relates to TEAMSTANDINGSTAT
   - stat_id
   - player_id - relates to player_id in PLAYER table
   - games_played
@@ -144,15 +144,15 @@ The tables used in this project include those describing a(n):
     - `SELECT * FROM Match WHERE date_played BETWEEN '2001-01-01' AND '2001-02-01'`
   - Finding the highest scoring home teams that played in the 2018 season of the premier league
     - `SELECT TOP 5 * FROM Match WHERE season_id IN (SELECT season_id FROM LeagueHistory WHERE league_id = 'PRM' AND season_year = 2018) ORDER BY goals_home DESC`
-- **TeamStat** and **TeamStanding**
+- **TeamStat** and **TeamStandingStat**
   - Finding the team with the best goal difference in their 2020 season
-    - `SELECT t.team_name, MAX(tst.goal_difference) as best_goal_difference FROM Team t INNER JOIN TeamStanding ts ON t.team_id = ts.team_id INNER JOIN TeamStat tst ON ts.stat_id = tst.stat_id WHERE ts.season_year = 2020`
+    - `SELECT t.team_name, MAX(tst.goal_difference) as best_goal_difference FROM Team t INNER JOIN TeamStandingStat ts ON t.team_id = ts.team_id INNER JOIN TeamStat tst ON ts.stat_id = tst.stat_id WHERE ts.season_year = 2020`
   - Finding the highest goals scored by any team
     - `SELECT MAX(goals_scored) AS highest_goals_scored FROM TeamStat`
   - Finding a team's (Manchester City) stats in a certain season
-    - `SELECT tst.* FROM TeamStanding ts INNER JOIN TeamStat tst ON ts.standing_id = tst.standing_id WHERE ts.team_id IN (SELECT team_id FROM Team WHERE team_name LIKE '%manchester city%')`
+    - `SELECT tst.* FROM TeamStandingStat ts INNER JOIN TeamStat tst ON ts.standing_id = tst.standing_id WHERE ts.team_id IN (SELECT team_id FROM Team WHERE team_name LIKE '%manchester city%')`
   - Finding the seasons which a team (Barcelona) played in 
-    - `SELECT season_year FROM TeamStanding ts INNER JOIN Team t ON t.team_id = ts.team_id WHERE t.team_name LIKE '%barcelona%'`
+    - `SELECT season_year FROM TeamStandingStat ts INNER JOIN Team t ON t.team_id = ts.team_id WHERE t.team_name LIKE '%barcelona%'`
 - **LeagueHistory**
   - Finding the mvp in a certain season of a certain league (premier league)
     - `SELECT first_name FROM Player WHERE player_id IN (SELECT league_mvp_id FROM LeagueHistory WHERE season_year = 2017 AND league_id = 'PRM')`
