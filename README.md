@@ -129,8 +129,6 @@ The tables used in this project include those describing a(n):
 - **Player** and **PlayerStat**
   - Arranging players by salary
     - `SELECT first_name, last_name, year_salary FROM Player ORDER BY year_salary DESC`
-  - Finding the most decorated player
-    - `SELECT TOP 1 first_name, last_name FROM Player ORDER BY len(award_ids) DESC`
   - Finding the stats of a player (ex: Messi)
     - `SELECT p.first_name, p.last_name, ps.* FROM Player p INNER JOIN PlayerStat ps ON p.player_id = ps.player_id WHERE p.last_name LIKE '%messi%'`
   - Finding the player with the highest goals scored
@@ -153,10 +151,10 @@ The tables used in this project include those describing a(n):
     - `SELECT MAX(goals_scored) AS highest_goals_scored FROM TeamStat`
   - Finding a team's (Manchester City) stats in a certain season
     - `SELECT tst.* FROM TeamStandingStat ts INNER JOIN TeamStat tst ON ts.standing_id = tst.standing_id WHERE ts.team_id IN (SELECT team_id FROM Team WHERE team_name LIKE '%manchester city%')`
-  - Finding the seasons which a team (Barcelona) played in 
+  - ~~Finding the seasons which a team (Barcelona) played in~~ - outdated
     - `SELECT season_year FROM TeamStandingStat ts INNER JOIN Team t ON t.team_id = ts.team_id WHERE t.team_name LIKE '%barcelona%'`
 - **LeagueHistory**
   - Finding the mvp in a certain season of a certain league (premier league)
-    - `SELECT first_name FROM Player WHERE player_id IN (SELECT league_mvp_id FROM LeagueHistory WHERE season_year = 2017 AND league_id = 'PRM')`
+    - `SELECT first_name FROM Player WHERE player_id IN (SELECT mvp_id FROM LeagueHistory WHERE season_year = 2017 AND league_id = 'PRM')`
   - Finding the teams that have win in a certain league (world cup)
     - `SELECT t.team_name FROM Team t INNER JOIN LeagueHistory lh ON t.team_id = lh.team_winning_id WHERE lh.league_id = 'WRLD'`
