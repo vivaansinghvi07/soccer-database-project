@@ -156,7 +156,7 @@ ALTER TABLE PlayerAward ADD PRIMARY KEY (playeraward_id);
 ----------------------
 ALTER TABLE LeagueHistory ADD CONSTRAINT FK_LeagueHistory_League FOREIGN KEY (league_id) REFERENCES League (league_id);
 ALTER TABLE LeagueHistory ADD CONSTRAINT FK_LeagueHistory_WinningTeam FOREIGN KEY (winning_team_id) REFERENCES Team (team_id);
-ALTER TABLE LeagueHistory ADD CONSTRAINT FK_LeagueHistory_Player FOREIGN KEY (mvp_id) REFERENCES Player (player_id);
+ALTER TABLE LeagueHistory ADD CONSTRAINT FK_LeagueHistory_MostValuablePlayer FOREIGN KEY (mvp_id) REFERENCES Player (player_id);
 ALTER TABLE TeamStanding ADD CONSTRAINT FK_TeamStanding_LeagueHistory FOREIGN KEY (season_id) REFERENCES LeagueHistory (season_id);
 ALTER TABLE TeamStanding ADD CONSTRAINT FK_TeamStanding_Team FOREIGN KEY (team_id) REFERENCES Team (team_id);
 ALTER TABLE TeamStanding ADD CONSTRAINT FK_TeamStanding_League FOREIGN KEY (league_id) REFERENCES League (league_id);
