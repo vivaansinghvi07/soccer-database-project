@@ -122,7 +122,7 @@ CREATE TABLE Team
 	games_played      int             NULL ,
 	wins              int             NULL ,
 	country           char(50)        NULL ,
-	league_id         char(5)         NOT NULL ,
+	league_id         char(5)         NOT NULL
 );
 
 ----------------------
