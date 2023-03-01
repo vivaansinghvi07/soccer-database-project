@@ -13,7 +13,7 @@ CREATE TABLE TeamStanding
 	standing_id	    int	        NOT NULL UNIQUE ,
 	team_id    	    int         NOT NULL ,
 	league_id  	    char(5)     NOT NULL ,
-	season_id		int	        NULL
+	season_id		int			NULL
 );
 
 --------------------------
@@ -106,10 +106,10 @@ CREATE TABLE PlayerStat
 -----------------------
 CREATE TABLE PlayerAward
 (
-    playeraward_id  int         NOT NULL UNIQUE ,
-    date_awarded    date        NULL ,
-    player_id       int         NOT NULL ,
-    award_id        int         NOT NULL
+	playeraward_id  int         NOT NULL UNIQUE ,
+	date_awarded    date        NULL ,
+	player_id       int         NOT NULL ,
+	award_id        int         NOT NULL
 );
 -----------------------
 -- Create Team table
@@ -130,11 +130,11 @@ CREATE TABLE Team
 ----------------------
 CREATE TABLE Award
 (
-  award_id          int             NOT NULL UNIQUE ,
-  award_name        char(50)        NOT NULL ,
-  year_created      int             NULL ,
-  times_given       int             NULL ,
-  award_desc        varchar(500)    NULL 
+	award_id          int             NOT NULL UNIQUE ,
+	award_name        char(50)        NOT NULL ,
+	year_created      int             NULL ,
+	times_given       int             NULL ,
+	award_desc        varchar(500)    NULL 
 );
 
 ----------------------
