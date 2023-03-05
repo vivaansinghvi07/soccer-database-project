@@ -84,8 +84,7 @@ CREATE TABLE Player
 	last_name         char(20)        NOT NULL ,
 	middle_initial    char(1)         NULL ,
 	year_salary       decimal(12,2)   NULL ,
-	field_position    char(20)        NULL ,
-	team_id           int             NULL 
+	field_position    char(20)        NULL 
 );
 
 -----------------------
