@@ -10,6 +10,7 @@ The tables used in this project include those describing a(n):
   - **Match**
   - **Player**
   - **Player Award** - keeps track of who won what
+  - **Player Team** - keeps track of the teams that a player is in
   - **Player Stat** - a players in-game stats
   - **Award**
 
@@ -77,15 +78,20 @@ The tables used in this project include those describing a(n):
   - **team_id** - relates to team_id in TEAM table
 
 **Player Stat** - this table keeps track of the player's in-game statistics, similar to how the TEAMSTAT table relates to TEAMSTANDINGSTAT
-  - **<u>playeraward_id</u>**
+  - **<u>stat_id</u>**
   - games_played
   - goals  
   - assists
   - hat_tricks
   - **player_id** - relates to player_id in PLAYER table
 
+**Player Team** - since players can be on multiple teams, this keeps track of what teams the player in question is in. Each row features one player-team relation. The addition of this table also has the feature where you can see what players are on a team
+  - **<u>playerteam_id</u>**
+  - **team_id** - relates to team_id in TEAM table
+  - player_id - relates to player_id in PLAYER table
+
 **Player Award** - this table stores each award that was won by a player and also lists the player next to that award
-  - **<u>stat_id</u>**
+  - **<u>playeraward_id</u>**
   - date_awarded
   - **award_id** - relates to award_id in AWARD table
   - **player_id** - relates to player_id in PLAYER table
