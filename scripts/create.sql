@@ -159,6 +159,7 @@ ALTER TABLE Match ADD PRIMARY KEY (match_id);
 ALTER TABLE TeamStandingStat ADD PRIMARY KEY (stat_id);
 ALTER TABLE PlayerStat ADD PRIMARY KEY (stat_id);
 ALTER TABLE PlayerAward ADD PRIMARY KEY (playeraward_id);
+ALTER TABLE PlayerTeam ADD PRIMARY KEY (playerteam_id);
 
 ----------------------
 -- Define foreign keys
@@ -173,6 +174,8 @@ ALTER TABLE TeamStandingStat ADD CONSTRAINT FK_TeamStandingStat_TeamStanding FOR
 ALTER TABLE PlayerStat ADD CONSTRAINT FK_PlayerStat_Player FOREIGN KEY (player_id) REFERENCES Player (player_id);
 ALTER TABLE PlayerAward ADD CONSTRAINT FK_PlayerAward_Player FOREIGN KEY (player_id) REFERENCES Player (player_id);
 ALTER TABLE PlayerAward ADD CONSTRAINT FK_PlayerAward_Award FOREIGN KEY (award_id) REFERENCES Award (award_id);
+ALTER TABLE PlayerTeam ADD CONSTRAINT FK_PlayerTeam_Player FOREIGN KEY (player_id) REFERENCES Player (player_id);
+ALTER TABLE PlayerTeam ADD CONSTRAINT FK_PlayerTeam_Team FOREIGN KEY (team_id) REFERENCES Team (team_id);
 ALTER TABLE Team ADD CONSTRAINT FK_Team_League FOREIGN KEY (league_id) REFERENCES League (league_id);
 ALTER TABLE Player ADD CONSTRAINT FK_Player_Team FOREIGN KEY (team_id) REFERENCES Team (team_id);
 ALTER TABLE Match ADD CONSTRAINT FK_Matches_Team1 FOREIGN KEY (team1_id) REFERENCES Team (team_id);
