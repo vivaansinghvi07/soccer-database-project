@@ -12,6 +12,8 @@ INSERT INTO PlayerStat(stat_id, player_id, games_played, goals, assists, hat_tri
     VALUES('', '', '', '', '', '');
 INSERT INTO PlayerAward(playeraward_id, date_awarded, player_id, award_id)
     VALUES('', '', '', '');
+INSERT INTO PlayerTeam(playerteam_id, player_id, team_id)
+    VALUES('', '', '');
 INSERT INTO LeagueHistory(season_)id, league_id, winning_team_id, season_year, revenue, viewership, mvp_id)
     VALUES ('', '', '', '', '', '', '');
 INSERT INTO TeamStanding(standing_id, team_id, league_id, season_id)
