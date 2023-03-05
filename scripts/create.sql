@@ -177,7 +177,6 @@ ALTER TABLE PlayerAward ADD CONSTRAINT FK_PlayerAward_Award FOREIGN KEY (award_i
 ALTER TABLE PlayerTeam ADD CONSTRAINT FK_PlayerTeam_Player FOREIGN KEY (player_id) REFERENCES Player (player_id);
 ALTER TABLE PlayerTeam ADD CONSTRAINT FK_PlayerTeam_Team FOREIGN KEY (team_id) REFERENCES Team (team_id);
 ALTER TABLE Team ADD CONSTRAINT FK_Team_League FOREIGN KEY (league_id) REFERENCES League (league_id);
-ALTER TABLE Player ADD CONSTRAINT FK_Player_Team FOREIGN KEY (team_id) REFERENCES Team (team_id);
 ALTER TABLE Match ADD CONSTRAINT FK_Matches_Team1 FOREIGN KEY (team1_id) REFERENCES Team (team_id);
 ALTER TABLE Match ADD CONSTRAINT FK_Match_Team2 FOREIGN KEY (team2_id) REFERENCES Team (team_id);
 ALTER TABLE Match ADD CONSTRAINT FK_Match_League FOREIGN KEY (league_id) REFERENCES League (league_id);
