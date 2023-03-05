@@ -75,7 +75,6 @@ The tables used in this project include those describing a(n):
   - middle_initial 
   - year_salary 
   - field_position
-  - **team_id** - relates to team_id in TEAM table
 
 **Player Stat** - this table keeps track of the player's in-game statistics, similar to how the TEAMSTAT table relates to TEAMSTANDINGSTAT
   - **<u>stat_id</u>**
