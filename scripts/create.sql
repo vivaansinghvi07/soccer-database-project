@@ -104,6 +104,16 @@ CREATE TABLE PlayerStat
 -----------------------
 -- Create Player Award Table
 -----------------------
+CREATE TABLE PlayerTeam
+(
+	playerteam_id	int         NOT NULL UNIQUE ,
+	player_id       int         NOT NULL ,
+	team_id        int         NOT NULL
+);
+
+-----------------------
+-- Create Player Award Table
+-----------------------
 CREATE TABLE PlayerAward
 (
 	playeraward_id  int         NOT NULL UNIQUE ,
