@@ -86,8 +86,10 @@ The tables used in this project include those describing a(n):
 
 **Player Team** - since players can be on multiple teams, this keeps track of what teams the player in question is in. Each row features one player-team relation. The addition of this table also has the feature where you can see what players are on a team
   - **<u>playerteam_id</u>**
+  - date_joined
+  - earnings
   - **team_id** - relates to team_id in TEAM table
-  - player_id - relates to player_id in PLAYER table
+  - **player_id** - relates to player_id in PLAYER table
 
 **Player Award** - this table stores each award that was won by a player and also lists the player next to that award
   - **<u>playeraward_id</u>**
