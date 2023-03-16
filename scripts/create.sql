@@ -106,8 +106,10 @@ CREATE TABLE PlayerStat
 CREATE TABLE PlayerTeam
 (
 	playerteam_id	int         NOT NULL UNIQUE ,
+	date_joined		date		NULL ,
+	earnings		int 		NULL ,
 	player_id       int         NOT NULL ,
-	team_id        int         NOT NULL
+	team_id        	int         NOT NULL
 );
 
 -----------------------
