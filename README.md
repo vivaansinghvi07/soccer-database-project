@@ -169,8 +169,6 @@ The tables used in this project include those describing a(n):
     - `SELECT MAX(goals_scored) AS highest_goals_scored FROM TeamStat`
   - Finding a team's (Manchester City) stats in a certain season
     - `SELECT tst.* FROM TeamStandingStat ts INNER JOIN TeamStat tst ON ts.standing_id = tst.standing_id WHERE ts.team_id IN (SELECT team_id FROM Team WHERE team_name LIKE '%manchester city%')`
-  - ~~Finding the seasons which a team (Barcelona) played in~~ - outdated
-    - `SELECT season_year FROM TeamStandingStat ts INNER JOIN Team t ON t.team_id = ts.team_id WHERE t.team_name LIKE '%barcelona%'`
 - **LeagueHistory**
   - Finding the mvp in a certain season of a certain league (premier league)
     - `SELECT first_name FROM Player WHERE player_id IN (SELECT mvp_id FROM LeagueHistory WHERE season_year = 2017 AND league_id = 'PRM')`
