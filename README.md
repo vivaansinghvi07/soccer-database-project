@@ -22,17 +22,17 @@ The tables used in this project include those describing a(n):
 
 ## Tables: 
 
-- **<u>Primary Key</u>**
+- **<i>Primary Key</i>**
 - **Foregin Key**
 
 **Team Standing** - this table helps keep track of how a team performed in a certain season - such as Arsenal’s performance in the Premier League in the 2018-19 season
-  - **<u>standing_id</u>**
+  - **<i>standing_id</i>**
   - team_id  - relates to team_id in TEAM table
   - **league_id** - relates to league_id in LEAGUE table
   - **season_id** - relates to season_id in LEAGUEHISTORY table
 
 **Team Standing Stat** - this table keeps track of the team's performance during a season, as a somewhat branch of the TEAMSTANDINGSTAT table
-  - **<u>stat_id</u>**
+  - **<i>stat_id</i>**
   - games_played
   - wins
   - draws
@@ -43,7 +43,7 @@ The tables used in this project include those describing a(n):
   - **standing_id** - relates to standing_id in TEAM STANDING table
 
 **League History** - this table keeps track of who won each season in the league. Such as: who won the Premier league in the 2017-18 season
-  - **<u>season_id</u>**	
+  - **<i>season_id</i>**	
   - season_year	
   - revenue
   - viewership
@@ -52,14 +52,14 @@ The tables used in this project include those describing a(n):
   - **mvp_id** - relates to player_id in PLAYER table
 
 **League** - this table keeps information of each league that I am looking at - such as when the Premier League was founded, how often it occurs, etc. Note: Recurrence represents the number of years between seasons of the league
-  - **<u>league_id</u>** 
+  - **<i>league_id</i>** 
   - year_founded  
   - league_name 
   - num_teams   
   - recurrence 
 
 **Match** - this table is the largest and keeps information on every match for every league that I am looking at - you will be able to find the data of every soccer game that happened
-  - **<u>match_id</u>**
+  - **<i>match_id</i>**
   - date_played
   - goals_team1   
   - goals_team2
@@ -69,7 +69,7 @@ The tables used in this project include those describing a(n):
   - **team1_id** - relates to team_id in TEAM table
 
 **Player** - this table keeps track of all the players in soccer and their various details - such as what Messi’s earnings are, what his awards are, what team(s) he plays for, and how many goals and assists he has made
-  - **<u>player_id</u>**
+  - **<i>player_id</i>**
   - first_name
   - last_name
   - middle_initial 
@@ -77,7 +77,7 @@ The tables used in this project include those describing a(n):
   - field_position
 
 **Player Stat** - this table keeps track of the player's in-game statistics, similar to how the TEAMSTAT table relates to TEAMSTANDINGSTAT
-  - **<u>stat_id</u>**
+  - **<i>stat_id</i>**
   - games_played
   - goals  
   - assists
@@ -85,20 +85,20 @@ The tables used in this project include those describing a(n):
   - **player_id** - relates to player_id in PLAYER table
 
 **Player Team** - since players can be on multiple teams, this keeps track of what teams the player in question is in. Each row features one player-team relation. The addition of this table also has the feature where you can see what players are on a team
-  - **<u>playerteam_id</u>**
+  - **<i>playerteam_id</i>**
   - date_joined
   - earnings
   - **team_id** - relates to team_id in TEAM table
   - **player_id** - relates to player_id in PLAYER table
 
 **Player Award** - this table stores each award that was won by a player and also lists the player next to that award
-  - **<u>playeraward_id</u>**
+  - **<i>playeraward_id</i>**
   - date_awarded
   - **award_id** - relates to award_id in AWARD table
   - **player_id** - relates to player_id in PLAYER table
 
 **Teams** - this table keeps track of teams and information about them - such as when Manchester United was founded, and what league it plays in
-  - **<u>team_id</u>** 
+  - **<i>team_id</i>** 
   - team_name 
   - year_founded 
   - games_played 
@@ -107,7 +107,7 @@ The tables used in this project include those describing a(n):
   - **league_id** - relates to league_id in LEAGUES table
 
 **Award** - stores information about various awards in soccer - such as when the Ballon-D’or was started, a description of it, and how many times it was given
-  - **<u>award_id</u>**
+  - **<i>award_id</i>**
   - award_name
   - year_created	
   - times_given
