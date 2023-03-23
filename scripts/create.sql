@@ -12,7 +12,7 @@ CREATE TABLE TeamStanding
 (
 	standing_id		int			NOT NULL UNIQUE ,
 	team_id			int			NOT NULL ,
-	league_id		char(5)		NOT NULL ,
+	league_id		char(5)			NOT NULL ,
 	season_id		int			NULL
 );
 
@@ -105,11 +105,11 @@ CREATE TABLE PlayerStat
 -----------------------
 CREATE TABLE PlayerTeam
 (
-	playerteam_id	int         NOT NULL UNIQUE ,
-	date_joined		date		NULL ,
-	earnings		int 		NULL ,
-	player_id       int         NOT NULL ,
-	team_id        	int         NOT NULL
+	playerteam_id	int         	NOT NULL UNIQUE ,
+	date_joined	date		NULL ,
+	earnings	int		NULL ,
+	player_id       int		NOT NULL ,
+	team_id        	int		NOT NULL
 );
 
 -----------------------
