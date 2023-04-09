@@ -12,7 +12,7 @@ CREATE TABLE TeamStanding
 (
 	standing_id		int			NOT NULL UNIQUE ,
 	team_id			int			NOT NULL ,
-	league_id		char(5)			NOT NULL ,
+	league_id		char(5)		NOT NULL ,
 	season_id		int			NULL
 );
 
@@ -55,9 +55,8 @@ CREATE TABLE League
 	year_founded      int             NULL ,
 	league_name       char(50)        NOT NULL ,
 	num_teams         int             NULL ,
-	recurrence        char(50)        NULL 
+	recurrence        int        	  NULL 
 );
-
 
 ----------------------
 -- Create Match table
@@ -83,7 +82,6 @@ CREATE TABLE Player
 	first_name        char(10)        NULL ,
 	last_name         char(20)        NOT NULL ,
 	middle_initial    char(1)         NULL ,
-	year_salary       decimal(12,2)   NULL ,
 	field_position    char(20)        NULL 
 );
 
@@ -130,10 +128,7 @@ CREATE TABLE Team
 	team_id           int             NOT NULL UNIQUE ,
  	team_name         char(50)        NOT NULL ,
 	year_founded      int             NULL ,
-	games_played      int             NULL ,
-	wins              int             NULL ,
-	country           char(50)        NULL ,
-	league_id         char(5)         NOT NULL
+	country           char(50)        NULL 
 );
 
 ----------------------
@@ -178,7 +173,6 @@ ALTER TABLE PlayerAward ADD CONSTRAINT FK_PlayerAward_Player FOREIGN KEY (player
 ALTER TABLE PlayerAward ADD CONSTRAINT FK_PlayerAward_Award FOREIGN KEY (award_id) REFERENCES Award (award_id);
 ALTER TABLE PlayerTeam ADD CONSTRAINT FK_PlayerTeam_Player FOREIGN KEY (player_id) REFERENCES Player (player_id);
 ALTER TABLE PlayerTeam ADD CONSTRAINT FK_PlayerTeam_Team FOREIGN KEY (team_id) REFERENCES Team (team_id);
-ALTER TABLE Team ADD CONSTRAINT FK_Team_League FOREIGN KEY (league_id) REFERENCES League (league_id);
 ALTER TABLE Match ADD CONSTRAINT FK_Matches_Team1 FOREIGN KEY (team1_id) REFERENCES Team (team_id);
 ALTER TABLE Match ADD CONSTRAINT FK_Match_Team2 FOREIGN KEY (team2_id) REFERENCES Team (team_id);
 ALTER TABLE Match ADD CONSTRAINT FK_Match_League FOREIGN KEY (league_id) REFERENCES League (league_id);

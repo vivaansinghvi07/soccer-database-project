@@ -73,7 +73,6 @@ The tables used in this project include those describing a(n):
   - first_name
   - last_name
   - middle_initial 
-  - year_salary 
   - field_position
 
 **Player Stat** - this table keeps track of the player's in-game statistics, similar to how the TEAMSTAT table relates to TEAMSTANDINGSTAT
@@ -100,11 +99,8 @@ The tables used in this project include those describing a(n):
 **Teams** - this table keeps track of teams and information about them - such as when Manchester United was founded, and what league it plays in
   - **<i>team_id</i>** 
   - team_name 
-  - year_founded 
-  - games_played 
-  - wins 
+  - year_founded
   - country  
-  - **league_id** - relates to league_id in LEAGUES table
 
 **Award** - stores information about various awards in soccer - such as when the Ballon-D’or was started, a description of it, and how many times it was given
   - **<i>award_id</i>**
