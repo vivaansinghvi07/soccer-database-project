@@ -1,18 +1,6 @@
 from database import Database
 
-# deletes all teams from a country
-def deleteTeamsByCountry(db: Database, country: str):
-    db.query(f"DELETE FROM Team WHERE country LIKE '%{country}%'")
-
-# deletes all leagues 
-def deleteLeagues(db: Database):
-    db.query("DELETE FROM League")
-
-# delete player-tema relations by player last name
-def deletePlayersTeams(db: Database, last_name: str):
-    db.query(f"DELETE FROM PlayerTeam pt WHERE player_id IN (SELECT player_id FROM Player WHERE last_name LIKE '%{last_name}%'")
-
-if __name__ == "__main__":
+def main():
     print(
         """
         1. Delete all teams from a country
@@ -40,3 +28,18 @@ if __name__ == "__main__":
 
     # commit and close
     db.end()
+
+# deletes all teams from a country
+def deleteTeamsByCountry(db: Database, country: str):
+    db.query(f"DELETE FROM Team WHERE country LIKE '%{country}%'")
+
+# deletes all leagues 
+def deleteLeagues(db: Database):
+    db.query("DELETE FROM League")
+
+# delete player-tema relations by player last name
+def deletePlayersTeams(db: Database, last_name: str):
+    db.query(f"DELETE FROM PlayerTeam pt WHERE player_id IN (SELECT player_id FROM Player WHERE last_name LIKE '%{last_name}%'")
+
+if __name__ == "__main__":
+    main()
