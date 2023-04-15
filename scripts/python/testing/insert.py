@@ -50,13 +50,9 @@ if __name__ == "__main__":
         trait_list = ["first_name", "last_name", "middle_initial", "id", "position"]
         traits = {}
 
-        # fills dict
-        for trait in trait_list:
-            traits[trait] = None
-
-        # creates variables for traits
+        # fill dict
         for trait in traits:
-            traits[trait] = input(trait + ": ")
+            traits[trait] = input(f"{trait}: ")
 
         # generates the player
         insert_player(
@@ -68,4 +64,23 @@ if __name__ == "__main__":
             position=traits["position"]
         )
 
+    elif method == '2':
+        # each trait of a team
+        trait_list = ["name", "id", "year_founded", "country"]
+        traits = {}
+
+        # fill dict
+        for trait in traits:
+            traits[trait] = input(f"{trait}: ")
+
+        # generate the team
+        insert_team(
+            database=db,
+            name=traits["name"],
+            id=traits["id"],
+            year=traits["year_founded"],
+            country=traits["country"]
+        )
+
+    # commit and close connection
     db.end()
