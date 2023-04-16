@@ -1,33 +1,34 @@
 from database import Database
 
 def main():
-    print(
-        """
-        1. Delete all teams from a country
-        2. Delete all leagues 
-        3. Delete all of a player's relations with a team
-        """
-    )
-    method = input("Enter the function you want to do: ")
+    try:
+        print(
+            """
+            1. Delete all teams from a country
+            2. Delete all leagues 
+            3. Delete all of a player's relations with a team
+            """
+        )
+        method = input("Enter the function you want to do: ")
 
-    # assures method is proper
-    while method not in ['1', '2', '3']:
-        method = input("Enter a number between 1 and 3: ")
+        # assures method is proper
+        while method not in ['1', '2', '3']:
+            method = input("Enter a number between 1 and 3: ")
 
-    # creates database
-    db = Database()
+        # creates database
+        db = Database()
 
-    if method == '1':
-        country = input("Enter the country: ")
-        deleteTeamsByCountry(db=db, country=country)
-    elif method == '2':
-        deleteLeagues(db=db)
-    elif method == '3':
-        last_name = input("Enter the player's last name: ")
-        deletePlayersTeams(db=db, last_name=last_name)
-
-    # commit and close
-    db.end()
+        if method == '1':
+            country = input("Enter the country: ")
+            deleteTeamsByCountry(db=db, country=country)
+        elif method == '2':
+            deleteLeagues(db=db)
+        elif method == '3':
+            last_name = input("Enter the player's last name: ")
+            deletePlayersTeams(db=db, last_name=last_name)
+    finally:
+        # commit and close
+        db.end()
 
 # deletes all teams from a country
 def deleteTeamsByCountry(db: Database, country: str):

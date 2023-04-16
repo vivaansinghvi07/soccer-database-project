@@ -2,31 +2,35 @@ from database import Database
 
 def main():
 
-    # creates database
-    db = Database()
+    try:
 
-    # get type of function to run
-    print(
-        """
-        1. Select 5 teams
-        2. Select all player-team relations
-        3. Select all leagues
-        4. Select player by last name
-        """
-    )
-    num = input("What function do you want to execute? ")
+        # creates database
+        db = Database()
 
-    if not num in ["1", "2", "3", "4"]:
-        print("Invalid choice!")
-    elif num == "4":
-        selectPlayerByName(db, last_name=input("Enter the player's last name: "))
-    else:
-        num = int(num)
-        print()
-        eval(["selectTeams", "selectPlayerTeams", "selectLeagues"][num-1] + "(db)")
+        # get type of function to run
+        print(
+            """
+            1. Select 5 teams
+            2. Select all player-team relations
+            3. Select all leagues
+            4. Select player by last name
+            """
+        )
+        num = input("What function do you want to execute? ")
 
-    # closes connection
-    db.end()
+        if not num in ["1", "2", "3", "4"]:
+            print("Invalid choice!")
+        elif num == "4":
+            selectPlayerByName(db, last_name=input("Enter the player's last name: "))
+        else:
+            num = int(num)
+            print()
+            eval(["selectTeams", "selectPlayerTeams", "selectLeagues"][num-1] + "(db)")
+
+    finally:
+        # closes connection
+        if db:
+            db.end()
 
 # neatifies multiple rows
 def format(ls):

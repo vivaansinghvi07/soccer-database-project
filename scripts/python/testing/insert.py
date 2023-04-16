@@ -1,79 +1,82 @@
 from database import Database
 
 def main():
-    print(
-        """
-        1. Player
-        2. Team
-        3. League
-        """
-    )
-    method = input("Enter what type of row you want to add: ")
-
-    # connect to database
-    db = Database()
-
-    # makes sure input is correct
-    while method not in ['1', '2', '3']:
-        method = input("Enter between 1 and 3: ")
-
-    if method == '1':
-        # goes through each trait of the player
-        trait_list = ["first_name", "last_name", "middle_initial", "id", "position"]
-        traits = {}
-
-        # fill dict
-        for trait in trait_list:
-            traits[trait] = input(f"{trait}: ")
-
-        # generates the player
-        insert_player(
-            database=db,
-            first_name=traits["first_name"],
-            last_name=traits["last_name"],
-            middle_initial=traits["middle_initial"],
-            id=traits["id"],
-            position=traits["position"]
+    try:
+        print(
+            """
+            1. Player
+            2. Team
+            3. League
+            """
         )
+        method = input("Enter what type of row you want to add: ")
 
-    elif method == '2':
-        # each trait of a team
-        trait_list = ["name", "id", "year_founded", "country"]
-        traits = {}
+        # connect to database
+        db = Database()
 
-        # fill dict
-        for trait in trait_list:
-            traits[trait] = input(f"{trait}: ")
+        # makes sure input is correct
+        while method not in ['1', '2', '3']:
+            method = input("Enter between 1 and 3: ")
 
-        # generate the team
-        insert_team(
-            database=db,
-            name=traits["name"],
-            id=traits["id"],
-            year=traits["year_founded"],
-            country=traits["country"]
-        )
+        if method == '1':
+            # goes through each trait of the player
+            trait_list = ["first_name", "last_name", "middle_initial", "id", "position"]
+            traits = {}
 
-    elif method == '3':
-        # each trait of a league
-        trait_list = ["name", "id", "number_of_teams", "years_between_seasons", "year_founded"]
-        traits = {}
+            # fill dict
+            for trait in trait_list:
+                traits[trait] = input(f"{trait}: ")
 
-        # fill dict
-        for trait in trait_list:
-            traits[trait] = input(f"{trait}: ")
+            # generates the player
+            insert_player(
+                database=db,
+                first_name=traits["first_name"],
+                last_name=traits["last_name"],
+                middle_initial=traits["middle_initial"],
+                id=traits["id"],
+                position=traits["position"]
+            )
 
-        insert_league(
-            database=db,
-            name=traits["name"],
-            id=traits["id"],
-            year=traits["year_founded"],
-            recurrence=traits["years_between_seasons"],
-            num_teams=traits["number_of_teams"]
-        )
+        elif method == '2':
+            # each trait of a team
+            trait_list = ["name", "id", "year_founded", "country"]
+            traits = {}
 
-    # commit and close connection
-    db.end()
+            # fill dict
+            for trait in trait_list:
+                traits[trait] = input(f"{trait}: ")
+
+            # generate the team
+            insert_team(
+                database=db,
+                name=traits["name"],
+                id=traits["id"],
+                year=traits["year_founded"],
+                country=traits["country"]
+            )
+
+        elif method == '3':
+            # each trait of a league
+            trait_list = ["name", "id", "number_of_teams", "years_between_seasons", "year_founded"]
+            traits = {}
+
+            # fill dict
+            for trait in trait_list:
+                traits[trait] = input(f"{trait}: ")
+
+            insert_league(
+                database=db,
+                name=traits["name"],
+                id=traits["id"],
+                year=traits["year_founded"],
+                recurrence=traits["years_between_seasons"],
+                num_teams=traits["number_of_teams"]
+            )
+
+    finally:
+        # commit and close connection
+        if db:
+            db.end()
 
 def format_insert(database: Database, query: str):
 
