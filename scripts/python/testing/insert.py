@@ -5,6 +5,7 @@ def main():
         """
         1. Player
         2. Team
+        3. League
         """
     )
     method = input("Enter what type of row you want to add: ")
@@ -13,8 +14,8 @@ def main():
     db = Database()
 
     # makes sure input is correct
-    while method not in ['1', '2']:
-        method = input("Enter 1 or 2: ")
+    while method not in ['1', '2', '3']:
+        method = input("Enter between 1 and 3: ")
 
     if method == '1':
         # goes through each trait of the player
@@ -22,7 +23,7 @@ def main():
         traits = {}
 
         # fill dict
-        for trait in traits:
+        for trait in trait_list:
             traits[trait] = input(f"{trait}: ")
 
         # generates the player
@@ -41,7 +42,7 @@ def main():
         traits = {}
 
         # fill dict
-        for trait in traits:
+        for trait in trait_list:
             traits[trait] = input(f"{trait}: ")
 
         # generate the team
@@ -51,6 +52,24 @@ def main():
             id=traits["id"],
             year=traits["year_founded"],
             country=traits["country"]
+        )
+
+    elif method == '3':
+        # each trait of a league
+        trait_list = ["name", "id", "number_of_teams", "years_between_seasons", "year_founded"]
+        traits = {}
+
+        # fill dict
+        for trait in trait_list:
+            traits[trait] = input(f"{trait}: ")
+
+        insert_league(
+            database=db,
+            name=traits["name"],
+            id=traits["id"],
+            year=traits["year_founded"],
+            recurrence=traits["years_between_seasons"],
+            num_teams=traits["number_of_teams"]
         )
 
     # commit and close connection
@@ -80,6 +99,17 @@ def insert_team(database: Database, id=None, name=None, year=None, country=None)
     query = (
         "INSERT INTO Team(team_id, team_name, year_founded, country)"
         f"VALUES ('{id}', '{name}', '{year}', '{country}');"
+    )
+
+    # execute
+    format_insert(database, query)
+
+def insert_league(database: Database, name=None, id=None, num_teams=None, recurrence=None, year=None):
+
+    # generate sql insert
+    query = (
+        "INSERT INTO League(league_id, league_name, year_founded, recurrence, num_teams)"
+        f"VALUES ('{id}', '{name}', '{year}', '{recurrence}', '{num_teams}');"
     )
 
     # execute
