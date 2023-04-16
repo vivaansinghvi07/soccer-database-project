@@ -18,7 +18,7 @@ def main():
 
     if not num in ["1", "2", "3", "4"]:
         print("Invalid choice!")
-    elif num == "5":
+    elif num == "4":
         selectPlayerByName(db, last_name=input("Enter the player's last name: "))
     else:
         num = int(num)
