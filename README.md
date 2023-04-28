@@ -74,6 +74,7 @@ The tables used in this project include those describing a(n):
   - last_name
   - middle_initial 
   - field_position
+  - date_of_birth
 
 **Player Stat** - this table keeps track of the player's in-game statistics, similar to how the TEAMSTAT table relates to TEAMSTANDINGSTAT
   - **<i>stat_id</i>**
