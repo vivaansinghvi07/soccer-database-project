@@ -8,7 +8,7 @@ INSERT INTO Player(first_name, last_name, middle_initial, player_id, field_posit
     VALUES ('', '', '', '', '', '');
 INSERT INTO Award(award_id, award_name, year_created, times_given, award_desc)
     VALUES ('', '', '', '', '');
-INSERT INTO PlayerStat(stat_id, player_id, games_played, goals, assists, hat_tricks)
+INSERT INTO PlayerStat(stat_id, player_id, games_played, goals, assists, cards)
     VALUES('', '', '', '', '', '');
 INSERT INTO PlayerAward(playeraward_id, date_awarded, player_id, award_id)
     VALUES('', '', '', '');
