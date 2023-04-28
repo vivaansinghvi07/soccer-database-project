@@ -4,8 +4,8 @@ INSERT INTO League(year_founded, league_name, league_id, num_teams, recurrence)
     VALUES ('', '', '', '', '');
 INSERT INTO Team(team_id, team_name, year_founded, country) 
     VALUES ('', '', '', '');
-INSERT INTO Player(first_name, last_name, middle_initial, player_id, field_position)
-    VALUES ('', '', '', '', '');
+INSERT INTO Player(first_name, last_name, middle_initial, player_id, field_position, date_of_birth)
+    VALUES ('', '', '', '', '', '');
 INSERT INTO Award(award_id, award_name, year_created, times_given, award_desc)
     VALUES ('', '', '', '', '');
 INSERT INTO PlayerStat(stat_id, player_id, games_played, goals, assists, hat_tricks)
