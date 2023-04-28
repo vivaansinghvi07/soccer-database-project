@@ -82,7 +82,8 @@ CREATE TABLE Player
 	first_name        char(10)        NULL ,
 	last_name         char(20)        NOT NULL ,
 	middle_initial    char(1)         NULL ,
-	field_position    char(20)        NULL 
+	field_position    char(20)        NULL ,
+	date_of_birth	  date			  NULL
 );
 
 -----------------------
@@ -94,7 +95,7 @@ CREATE TABLE PlayerStat
 	games_played      int         NULL ,
 	goals             int         NULL ,
 	assists           int         NULL ,
-	hat_tricks        int         NULL ,
+	cards       	  int         NULL ,
 	player_id         int         NOT NULL
 );
 
