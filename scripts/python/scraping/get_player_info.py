@@ -4,6 +4,13 @@ from bs4 import BeautifulSoup
 import re
 from multiprocessing import Pool
 import csv
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+
+options = Options()
+options.add_argument('--headless')
+options.add_argument('--disable-gpu')
+driver = webdriver.Chrome('/path/to/your/chromedriver', options=options)
 
 HEADERS = {'User-Agent': 
            'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36'}
@@ -21,17 +28,13 @@ def get_player_info(id):
             month = dates.index(month)
             return f"{year}-{month}-{day}"
         
-        COUNTRY = "nationality"
-        DOB = "birthDate"
-        POSITION = ""
-
         SEARCH = "data-header__label"
         NAME = "data-header__headline-wrapper"
-        url = f"https://www.transfermarkt.co.uk/kylian-mbappe/profil/spieler/{id}"
+        url = f"https://www.transfermarkt.co.uk/lionel-messi/profil/spieler/{id}"
 
-
-        page = requests.get(url, headers=HEADERS)
-        soup = BeautifulSoup(page.text, features="lxml")
+        page = driver.get(url)
+        #page = requests.get(url, headers=HEADERS)
+        soup = BeautifulSoup(page.page_source, features="lxml")
 
         qualities = soup.find_all('li', {'class': SEARCH})
 
@@ -97,14 +100,15 @@ def _get_player_stats(id):
     
 
     # find table with information
-    page = requests.get(url, headers=HEADERS)
+    page = driver.get(url)
+    # page = requests.get(url, headers=HEADERS)
 
     print("Response Received.")
 
     main_table = None
 
     # find the table 
-    tables = pd.read_html(page.text)
+    tables = pd.read_html(page.page_source)
     print("Table read.")
     for table in tables:
         if "Season" in table:
